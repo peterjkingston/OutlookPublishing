@@ -173,11 +173,7 @@
   -->
   <ItemGroup>
     <Compile Include="ContainerFactory.cs" />
-    <Compile Include="IInternalRules.cs" />
-    <Compile Include="InternalRules.cs" />
     <Compile Include="IProgram.cs" />
-    <Compile Include="IRuleCriteria.cs" />
-    <Compile Include="IRuleReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -201,8 +197,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RuleCriteria.cs" />
-    <Compile Include="RuleReader.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
