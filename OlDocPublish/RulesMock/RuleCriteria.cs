@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Outlook;
 
-namespace OutlookAddInController
+namespace OlDocPublish.RulesMock
 {
 	public class RuleCriteria : IRuleCriteria
 	{

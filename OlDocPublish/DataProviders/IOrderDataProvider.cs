@@ -1,4 +1,4 @@
-namespace OlDocPublish
+namespace OlDocPublish.DataProviders
 {
     public interface IOrderDataProvider
     {

@@ -1,6 +1,6 @@
 ﻿using Acrobat;
 
-namespace OlDocPublish
+namespace OlDocPublish.Factory
 {
 	public interface IAcrobatTypeProvider
 	{

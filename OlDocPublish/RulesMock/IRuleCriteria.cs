@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Office.Interop.Outlook;
 
-namespace OutlookAddInController
+namespace OlDocPublish.RulesMock
 {
 	public interface IRuleCriteria
 	{

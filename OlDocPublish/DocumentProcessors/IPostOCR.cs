@@ -1,4 +1,4 @@
-namespace OlDocPublish
+namespace OlDocPublish.Processors
 {
     public interface IPostOCR
     {

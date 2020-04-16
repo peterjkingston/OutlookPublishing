@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Outlook;
+using OlDocPublish.Processors;
 using Outlook = Microsoft.Office.Interop.Outlook;
-using OutlookAddInController;
 
 namespace OlDocPublish.RulesMock
 {

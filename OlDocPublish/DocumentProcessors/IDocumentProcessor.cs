@@ -2,7 +2,7 @@ using System;
 using Microsoft.Office.Interop.Outlook;
 using OlDocPublish.Snipping;
 
-namespace OlDocPublish
+namespace OlDocPublish.Processors
 {
     public interface IDocumentProcessor
     {

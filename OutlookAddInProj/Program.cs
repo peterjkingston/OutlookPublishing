@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Outlook;
-using OutlookAddInProj;
+using OlDocPublish.RulesMock;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace OutlookAddInController

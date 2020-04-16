@@ -1,6 +1,6 @@
 ﻿using Microsoft.Office.Interop.Outlook;
 
-namespace OutlookAddInProj
+namespace OlDocPublish.RulesMock
 {
 	public interface IInternalRules
 	{

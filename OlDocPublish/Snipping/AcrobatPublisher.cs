@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using Acrobat;
 using Helpers.IO;
+using OlDocPublish.Factory;
+using OlDocPublish.Processors;
+using OlDocPublish.DataProviders;
 
 namespace OlDocPublish.Snipping
 {
@@ -21,7 +24,7 @@ namespace OlDocPublish.Snipping
 
         private void Processor_OnSnipRequested(object o, SnipInfo snipInfo)
         {
-            Publish(Resources.Paths.TempPDFPath, snipInfo.SO, $"{snipInfo.SO} - {snipInfo.DocumentType}", snipInfo.Start, snipInfo.End, snipInfo.EOF);
+            Publish(DataProviders.Paths.TempPDFPath, snipInfo.SO, $"{snipInfo.SO} - {snipInfo.DocumentType}", snipInfo.Start, snipInfo.End, snipInfo.EOF);
         }
 
         public void Publish(string tempFilePath, string so,string label, int startPageNum, int endPageNum, bool eof = false)
@@ -65,7 +68,7 @@ namespace OlDocPublish.Snipping
 
         private string GetCopyDirectory(string so, string label)
         {
-            string pubDir = Path.Combine(Resources.Paths.RemoteFileStorage, so);
+            string pubDir = Path.Combine(DataProviders.Paths.RemoteFileStorage, so);
             if(!Directory.Exists(pubDir)) Directory.CreateDirectory(pubDir);
 
             return Path.Combine(pubDir, $"{label}.pdf");
@@ -96,7 +99,7 @@ namespace OlDocPublish.Snipping
 
         private string GetPublishDirectory(string so, string label)
         {
-            string pubDir = Path.Combine(Resources.Paths.FileStorage, so);
+            string pubDir = Path.Combine(DataProviders.Paths.FileStorage, so);
             if(!Directory.Exists(pubDir)) Directory.CreateDirectory(pubDir);
 
             return Path.Combine(pubDir, $"{label}.pdf");
@@ -117,7 +120,7 @@ namespace OlDocPublish.Snipping
         private CAcroPDDoc GetPDDocFromFile(string tempFilePath)
         {
             _avDoc = _pdfProvider.GetAcroAVDoc();
-            if(Convert.ToBoolean(_avDoc.Open(tempFilePath, Resources.Headers.GetTemporaryPDF())))
+            if(Convert.ToBoolean(_avDoc.Open(tempFilePath, Headers.GetTemporaryPDF())))
             {
                return (CAcroPDDoc)_avDoc.GetPDDoc(); 
             }

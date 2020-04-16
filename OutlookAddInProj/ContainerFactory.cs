@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using OutlookAddInProj;
 using OlDocPublish;
-using OlDocPublish.SAPTools;
-using Resources;
 using OlDocPublish.Snipping;
 using OlDocPublish.Logging;
+using OlDocPublish.RulesMock;
+using OlDocPublish.Processors;
+using OlDocPublish.DataProviders;
+using OlDocPublish.Factory;
 
 namespace OutlookAddInController
 {

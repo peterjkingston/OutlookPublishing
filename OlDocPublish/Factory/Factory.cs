@@ -1,12 +1,12 @@
 using Acrobat;
 
-namespace OlDocPublish
+namespace OlDocPublish.Factory
 {
     public class Factory : IAcrobatTypeProvider
     {
         public CAcroAVDoc GetAcroAVDoc()
         {
-            return AcroTools.TypeLoader.GetAVDoc();
+            return TypeLoader.GetAVDoc();
         }
     }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OutlookAddInController;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
-namespace OutlookAddInProj
+namespace OlDocPublish.RulesMock
 {
 	public class InternalRules : IInternalRules
 	{

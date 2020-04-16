@@ -1,7 +1,7 @@
 using System;
 using Acrobat;
 
-namespace OlDocPublish.AcroTools
+namespace OlDocPublish.Factory
 {
     public static class TypeLoader
     {

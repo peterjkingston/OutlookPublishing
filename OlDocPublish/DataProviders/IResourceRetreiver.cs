@@ -1,4 +1,4 @@
-﻿namespace Resources
+﻿namespace OlDocPublish.DataProviders
 {
 	public interface IResourceRetreiver
 	{

@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using OlDocPublish.DataProviders;
+using OlDocPublish.Processors;
 
 namespace OlDocPublish.Logging
 {
@@ -19,7 +21,7 @@ namespace OlDocPublish.Logging
 
         public void LogSalesOrder(string sO)
         {
-            string logFilePath = Resources.Paths.TodaysSOs;
+            string logFilePath = Paths.TodaysSOs;
             DateTime fileDate;
             using (FileStream stream = File.Open(logFilePath, FileMode.OpenOrCreate))
             {

@@ -5,7 +5,7 @@ using Acrobat;
 using OlDocPublish.Snipping;
 
 
-namespace OlDocPublish
+namespace OlDocPublish.Processors
 {
     public class AcrobatAutoProcessor : IDisposable, IDocumentProcessor
     {

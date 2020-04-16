@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace OlDocPublish
+namespace OlDocPublish.DataProviders
 {
     public interface IDataReader
     {

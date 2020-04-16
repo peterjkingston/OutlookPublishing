@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Helpers.Array;
 
-namespace OlDocPublish.SAPTools
+namespace OlDocPublish.DataProviders
 {
     public class SAPTextDataReader : IDataReader
     {
@@ -11,15 +11,15 @@ namespace OlDocPublish.SAPTools
         {
             List<string[]> dataList = new List<string[]>();
 
-            using(Stream stream = File.Open(Resources.Paths.FileStorage,FileMode.Open))
+            using(Stream stream = File.Open(Paths.FileStorage,FileMode.Open))
             {
                 using(TextReader tReader = new StreamReader(stream))
                 {
                     while(stream.CanRead)
                     {
-                        if((char)tReader.Peek() == Resources.DataAccess.Delimiter)
+                        if((char)tReader.Peek() == DataAccess.Delimiter)
                         {
-                            string[] data = tReader.ReadLine().Split(Resources.DataAccess.Delimiter);
+                            string[] data = tReader.ReadLine().Split(DataAccess.Delimiter);
                             dataList.Add(data);
                         }
                     }

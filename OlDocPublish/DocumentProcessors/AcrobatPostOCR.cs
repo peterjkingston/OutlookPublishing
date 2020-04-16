@@ -1,9 +1,9 @@
 using System;
 using System.Text.RegularExpressions;
 using Acrobat;
-using OlDocPublish.AcroTools;
+using OlDocPublish.DataProviders;
 
-namespace OlDocPublish
+namespace OlDocPublish.Processors
 {
     public class AcrobatPostOCR : IPostOCR
     {
@@ -103,7 +103,7 @@ namespace OlDocPublish
 
         private string SearchAroundRegex(int top, int bottom, int left, int right, int page, Regex exp)
         {
-            CAcroRect cAcroRect = AcroTools.TypeLoader.GetRect();
+            CAcroRect cAcroRect = Factory.TypeLoader.GetRect();
             cAcroRect.Top = (short)top;
             cAcroRect.bottom = (short)bottom;
             cAcroRect.Left = (short)left;
@@ -212,7 +212,7 @@ namespace OlDocPublish
 
         private string SearchAround(int top, int bottom, int left, int right, int page, string expected, double threshold)
         {
-            CAcroRect cAcroRect = AcroTools.TypeLoader.GetRect();
+            CAcroRect cAcroRect = Factory.TypeLoader.GetRect();
             cAcroRect.Top = (short)top;
             cAcroRect.bottom = (short)bottom;
             cAcroRect.Left = (short)left;

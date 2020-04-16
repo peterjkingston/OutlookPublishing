@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace OutlookAddInController
+namespace OlDocPublish.RulesMock
 {
 	public interface IRuleReader
 	{

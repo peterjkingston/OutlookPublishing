@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace OlDocPublish.SAPTools
+namespace OlDocPublish.DataProviders
 {
     public class SAPOrderDataProvider : IOrderDataProvider
     {

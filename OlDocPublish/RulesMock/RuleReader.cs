@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Json;
 
-namespace OutlookAddInController
+namespace OlDocPublish.RulesMock
 {
 	public class RuleReader : IRuleReader
 	{
