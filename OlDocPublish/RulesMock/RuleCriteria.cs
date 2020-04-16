@@ -8,22 +8,9 @@ using Microsoft.Office.Interop.Outlook;
 
 namespace OutlookAddInController
 {
-	public class RuleCriteria : IRuleCriteria, ISerializable
+	public class RuleCriteria : IRuleCriteria
 	{
-		public bool Match(MailItem mail)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Action(MailItem mail)
-		{
-			throw new NotImplementedException();
-		}
-
-		public void GetObjectData(SerializationInfo info, StreamingContext context)
-		{
-			throw new NotImplementedException();
-			
-		}
+		public Action<MailItem, string[]> Action { get; set; }
+		public Func<MailItem, bool> Match { get; set; }
 	}
 }

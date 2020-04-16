@@ -1,10 +1,11 @@
-﻿using Microsoft.Office.Interop.Outlook;
+﻿using System;
+using Microsoft.Office.Interop.Outlook;
 
 namespace OutlookAddInController
 {
 	public interface IRuleCriteria
 	{
-		void Action(MailItem mail);
-		bool Match(MailItem mail);
+		Action<MailItem, string[]> Action { get; set; }
+		Func<MailItem, bool> Match { get; set; }
 	}
 }

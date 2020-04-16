@@ -8,7 +8,7 @@ namespace OutlookAddInProj
 {
 	public class InternalRules : IInternalRules
 	{
-		readonly static string CRITERIA_PATH = $"C:\\Users\\{System.Environment.UserName}\\AppData\\Roaming\\Microsoft\\Outlook\\ExtensionCriteria.json";
+		readonly static string CRITERIA_PATH = $"ExtensionCriteria.json";
 		private readonly List<IRuleCriteria> _criterium;
 
 		public InternalRules(IRuleReader ruleReader)
@@ -27,7 +27,7 @@ namespace OutlookAddInProj
 					{
 						if (criteria.Match(mail))
 						{
-							Task.Run(()=>criteria.Action(mail));
+							Task.Run(()=>criteria.Action(mail, new string[] { }));
 						}
 					}
 				}

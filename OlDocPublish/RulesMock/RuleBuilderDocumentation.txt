@@ -1,0 +1,2 @@
+﻿rulebuilder <MAIL_ID> [-m | --moveToFolder <DESTINATION MAPI_FOLDER NAME>]
+	*Moves the designated mailitem to the requested MAPI_Folder by name, as it appears in the active session's namespace.
