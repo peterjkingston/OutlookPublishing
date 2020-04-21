@@ -1,11 +1,13 @@
-﻿using System;
-using Microsoft.Office.Interop.Outlook;
-
-namespace OlDocPublish.RulesMock
+﻿namespace OlDocPublish.RulesMock
 {
 	public interface IRuleCriteria
 	{
-		Action<MailItem, string[]> Action { get; set; }
-		Func<MailItem, bool> Match { get; set; }
+		RulePropertyCondition Condition { get; }
+		RuleProperty Property { get; }
+		RuleAction[] ResultingAction { get; }
+		string[] Validation { get; }
+
+		void DoAction(MailItem_ID mailID);
+		bool Match(MailItem_ID mailID);
 	}
 }

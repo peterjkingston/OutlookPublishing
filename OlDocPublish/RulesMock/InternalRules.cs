@@ -24,9 +24,10 @@ namespace OlDocPublish.RulesMock
 				{
 					foreach (IRuleCriteria criteria in _criterium)
 					{
-						if (criteria.Match(mail))
+						MailItem_ID mailID = new MailItem_ID(mail);
+						if (criteria.Match(mailID))
 						{
-							Task.Run(()=>criteria.Action(mail, new string[] { }));
+							Task.Run(() => criteria.DoAction(mailID));
 						}
 					}
 				}

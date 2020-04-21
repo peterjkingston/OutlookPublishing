@@ -9,8 +9,31 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace OlDocPublish.RulesMock
 {
+	public class RuleBuilder<T> where T:IRuleCriteria, new()
+	{
+
+		public IRuleCriteria CreateRule(RuleProperty property, RulePropertyCondition condition, string expectedText, RuleAction action)
+		{
+			T rule = new T();
+			//{
+			//	rule.Property = property;
+			//	rule.Condition = condition;
+			//	rule.Validation = expectedText;
+			//	rule.ResultingAction = action;
+			//}
+
+			return rule;
+		}
+
+
+
+
+	/***********************************OLD VERSION BELOW**************************************/
+	/*
 	public class RuleBuilder
 	{
+		
+		
 		private Application _outlookApp;
 		private IDocumentProcessor _processor;
 
@@ -20,7 +43,7 @@ namespace OlDocPublish.RulesMock
 			_processor = processor;
 		}
 
-		public IRuleCriteria CreateCriteria<T>(Func<MailItem, bool> matchFunction, Action<MailItem,string[]> action) where T :  IRuleCriteria, new()
+		public IRuleCriteria CreateCriteria<T>(Func<MailItem_ID, bool> matchFunction, Action<MailItem_ID, string[]> action) where T :  IRuleCriteria, new()
 		{
 			IRuleCriteria rule = new T();
 			{
@@ -34,17 +57,17 @@ namespace OlDocPublish.RulesMock
 		{
 			IRuleCriteria rule = new T();
 			{
-				rule.Match = (MailItem mail) => { return (string)mail.GetType().GetProperty(matchParameter).GetValue(mail) == matchExpected; };
+				rule.Match = (MailItem_ID mail) => { return (string)mail.GetType().GetProperty(matchParameter).GetValue(mail) == matchExpected; };
 				
 				//*********************************************************************
 				//Define prebuilt actions
 				//*********************************************************************
-				Action<MailItem,string[]> process = (MailItem mail, string[] args) => { _processor.ProcessMailItem(mail); };
+				Action<MailItem_ID,string[]> process = (MailItem_ID mail, string[] args) => { _processor.ProcessMailItem((MailItem)_outlookApp.Session.GetItemFromID(mail.Value)); };
 				
-				Action<MailItem,string[]> moveToFolder = (MailItem mail, string[] args) =>
+				Action<MailItem_ID, string[]> moveToFolder = (MailItem_ID mail, string[] args) =>
 				{
 					string folderName = GetFolderNameFromCLICommand(args[0]);
-					if (folderName != "") MoveMailToFolder(mail, folderName);
+					if (folderName != "") MoveMailToFolder((MailItem)_outlookApp.Session.GetItemFromID(mail.Value), folderName);
 				};
 
 				//*********************************************************************
@@ -64,7 +87,7 @@ namespace OlDocPublish.RulesMock
 						break;
 
 					case RuleAction.ProcessPDF_AND_MoveToFolder:
-						rule.Action = (MailItem mail, string[] args) =>
+						rule.Action = (MailItem_ID mail, string[] args) =>
 						{
 							process(mail, args);
 							moveToFolder(mail, args);
@@ -117,6 +140,6 @@ namespace OlDocPublish.RulesMock
 			int argLength = nextSwitchStart - argStart;
 			string argument = inputCommand.Substring(argStart, argLength);
 			return argument.Trim();
-		}
+		}*/
 	}
 }

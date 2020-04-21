@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 namespace OlDocPublish.RulesMock
 {
 	[Flags]
-	public enum RuleAction
+	public enum RuleProperty
 	{
-		ProcessPDF,
-		MoveToFolder
+		SenderAddress,
+		Body,
+		Subject,
+		ToAddress,
+		CCAddress
 	}
 }

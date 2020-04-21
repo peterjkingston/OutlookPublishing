@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace OlDocPublish.RulesMock
 {
-	[Flags]
-	public enum RuleAction
+	public enum RulePropertyCondition
 	{
-		ProcessPDF,
-		MoveToFolder
+		EqualTo,
+		NotEqualTo,
+		Contains,
+		DoesNotContain
 	}
 }

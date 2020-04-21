@@ -8,11 +8,11 @@ using System.IO;
 
 namespace OlDocPublish.RulesMock
 {
-	public class RuleWriter
+	public class RuleWriter<T> where T: IRuleCriteria
 	{
-		public void WriteRuleCriterium(string writePath, IEnumerable<IRuleCriteria> ruleCriterias)
+		public void WriteRuleCriterium(string writePath, IEnumerable<T> ruleCriterias)
 		{
-			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<IRuleCriteria>));
+			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<T>));
 			using (Stream stream = new FileStream(writePath, FileMode.OpenOrCreate))
 			{
 				jsonSerializer.WriteObject(stream, ruleCriterias);
