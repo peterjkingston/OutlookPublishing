@@ -9,16 +9,17 @@ using OlDocPublish.Processors;
 
 namespace OlDocPublish.RulesMock
 {
+	[Serializable()]
 	public class RuleCriteria : IRuleCriteria
 	{
 		private Application _app;
 		private IDocumentProcessor _processor;
 
-		public RuleProperty Property { get; protected set; }
-		public RulePropertyCondition Condition { get; protected set; }
-		public string[] Validation { get; protected set; }
-		public RuleAction[] ResultingAction { get; protected set; }
-		public string ActionArg { get; protected set; }
+		public RuleProperty Property { get; set; }
+		public RulePropertyCondition Condition { get; set; }
+		public string[] Validation { get; set; }
+		public RuleAction[] ResultingAction { get; set; }
+		public string ActionArg { get; set; }
 
 		public RuleCriteria(Application app, IDocumentProcessor documentProcessor)
 		{

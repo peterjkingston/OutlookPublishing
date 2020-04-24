@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace OlDocPublish.RulesMock
 {
-	[Flags]
 	public enum RuleAction
 	{
 		ProcessPDF,
