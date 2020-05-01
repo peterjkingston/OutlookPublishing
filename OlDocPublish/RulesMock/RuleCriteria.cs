@@ -12,7 +12,9 @@ namespace OlDocPublish.RulesMock
 	[Serializable()]
 	public class RuleCriteria : IRuleCriteria
 	{
+		[field:NonSerialized()]
 		private Application _app;
+		[field: NonSerialized()]
 		private IDocumentProcessor _processor;
 
 		public RuleProperty Property { get; set; }

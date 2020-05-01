@@ -60,7 +60,7 @@ namespace OlDocPublish.DataProviders
                 int rowCount = _raw.GetLength(1);
                 for(int row = 0; row < rowCount; row++)
                 {
-                    result = _raw[fieldIndex, row] == key? _raw[dataIndex, row]: "";
+                    result = _raw[row, fieldIndex] == key? _raw[row, dataIndex]: "";
                     if(result != ""){break;}
                 }
             }

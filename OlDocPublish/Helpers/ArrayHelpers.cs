@@ -36,5 +36,16 @@ namespace Helpers.Array
 
             return result;
         }
+
+        //public static T[,] SelectRows<T>(this T[,] recordSet, Func<T[], bool> match)
+        //{
+        //    int fieldCount = recordSet.GetLength(0);
+        //    int rowCount = recordSet.GetLength(1);
+        //    for(int row = 0; row < rowCount; row++)
+        //    {
+
+        //    }
+            
+        //}
     } 
 }

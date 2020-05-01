@@ -13,7 +13,7 @@ namespace OlDocPublish.RulesMock
 		public void WriteRuleCriterium(string writePath, IEnumerable<T> ruleCriterias)
 		{
 			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<T>));
-			using (Stream stream = new FileStream(writePath, FileMode.OpenOrCreate))
+			using (Stream stream = new FileStream(writePath, FileMode.OpenOrCreate, FileAccess.ReadWrite))
 			{
 				jsonSerializer.WriteObject(stream, ruleCriterias);
 			}
