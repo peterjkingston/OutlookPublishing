@@ -7,17 +7,17 @@ namespace OlDocPublish.RulesMock
 {
 	public class InternalRules : IInternalRules
 	{
-		readonly static string CRITERIA_PATH = $"ExtensionCriteria.json";
 		private readonly List<IRuleCriteria> _criterium;
 
-		public InternalRules(IRuleReader ruleReader)
+		public InternalRules(IRuleReader ruleReader, string criteria_path = "ExtensionCriteria.json")
 		{
-			_criterium = ruleReader.GetCriteria(CRITERIA_PATH);
+			_criterium = ruleReader.GetCriteria(criteria_path);
 		}
 
 		public void Process(Outlook.MailItem mail)
 		{
 			//TODO: Lock the email if possible
+
 			try
 			{
 				if (mail.Sender != null)

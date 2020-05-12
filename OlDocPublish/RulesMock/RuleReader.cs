@@ -6,20 +6,26 @@ namespace OlDocPublish.RulesMock
 {
 	public class RuleReader : IRuleReader
 	{
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
 		public List<IRuleCriteria> GetCriteria(string criteria_path)
 		{
 			List<IRuleCriteria> criterium = new List<IRuleCriteria>();
-			object jsonObj;
+			IEnumerable<RuleCriteria> jsonObj;
 
-			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<IRuleCriteria>));
+			DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(IEnumerable<RuleCriteria>));
 			using (Stream stream = new FileStream(criteria_path, FileMode.OpenOrCreate))
 			{
-				jsonObj = jsonSerializer.ReadObject(stream);
+				jsonObj = (IEnumerable<RuleCriteria>)jsonSerializer.ReadObject(stream);
 			}
 
 			try
 			{
-				criterium = new List<IRuleCriteria>((IRuleCriteria[])jsonObj);
+				
+				criterium = new List<IRuleCriteria>(jsonObj);
 			}
 			catch
 			{

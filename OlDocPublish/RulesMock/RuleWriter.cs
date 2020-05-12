@@ -5,10 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization.Json;
 using System.IO;
+using System.Reflection;
 
 namespace OlDocPublish.RulesMock
 {
-	public class RuleWriter<T> where T: IRuleCriteria
+	/// <summary>
+	/// Throws runtime error if T is not a concrete type.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public class RuleWriter<T>
 	{
 		public void WriteRuleCriterium(string writePath, IEnumerable<T> ruleCriterias)
 		{

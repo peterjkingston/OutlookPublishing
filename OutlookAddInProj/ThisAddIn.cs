@@ -13,10 +13,12 @@ namespace OutlookAddInProj
 {
     public partial class ThisAddIn
     {
+        public Application OutlookApp { get; private set; }
         private IContainer _container {get; set;}
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            _container = ContainerFactory.CreateContainer(this.Application);
+            OutlookApp = this.Application;
+            _container = ContainerFactory.CreateContainer(OutlookApp);
             this.Application.NewMailEx += Application_NewMailEx;
         }
 

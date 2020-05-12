@@ -9,6 +9,10 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace OlDocPublish.RulesMock
 {
+	/// <summary>
+	/// NOT USED IN FINAL DRAFT. HERE FOR RECORD ONLY.
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
 	public class RuleBuilder<T> where T:IRuleCriteria, new()
 	{
 
