@@ -13,13 +13,12 @@ namespace OlDockPublishTest.RulesMock
 		#region CLASS ARRANGE
 		// -- BEGIN CLASS ARRANGE --//
 
-
+		IDocumentProcessor _processor => Factory.GetProcessor();
 		Application _app => Factory.GetOutlookApplication();
-		MailItem _testMail => Factory.GetTestMail(_app);
 
 		private RuleCriteria GetDefaultCriteria()
 		{
-			RuleCriteria criteria = new RuleCriteria(_app, null);
+			RuleCriteria criteria = new RuleCriteria(_app, _processor);
 			{
 				criteria.Property = RuleProperty.Subject;
 				criteria.Condition = RulePropertyCondition.EqualTo;
@@ -39,7 +38,8 @@ namespace OlDockPublishTest.RulesMock
 		public void Match_FindsEqual_Subject()
 		{
 			//Arrange
-			MailItem_ID mailID = new MailItem_ID(_testMail);
+			MailItem testMail = Factory.GetTestMail(_app);
+			MailItem_ID mailID = new MailItem_ID(testMail);
 			RuleCriteria criteria = GetDefaultCriteria();
 			{
 				//No changes
@@ -57,7 +57,8 @@ namespace OlDockPublishTest.RulesMock
 		public void Match_FindsContains_Subject()
 		{
 			//Arrange
-			MailItem_ID mailID = new MailItem_ID(_testMail);
+			MailItem testMail = Factory.GetTestMail(_app);
+			MailItem_ID mailID = new MailItem_ID(testMail);
 			RuleCriteria criteria = GetDefaultCriteria();
 			{
 				criteria.Condition = RulePropertyCondition.Contains;
@@ -76,7 +77,8 @@ namespace OlDockPublishTest.RulesMock
 		public void Match_FindsNotEqual_Subject()
 		{
 			//Arrange
-			MailItem_ID mailID = new MailItem_ID(_testMail);
+			MailItem testMail = Factory.GetTestMail(_app);
+			MailItem_ID mailID = new MailItem_ID(testMail);
 			RuleCriteria criteria = GetDefaultCriteria();
 			{
 				criteria.Condition = RulePropertyCondition.NotEqualTo;
@@ -95,7 +97,8 @@ namespace OlDockPublishTest.RulesMock
 		public void Match_FindsNotContains_Subject()
 		{
 			//Arrange
-			MailItem_ID mailID = new MailItem_ID(_testMail);
+			MailItem testMail = Factory.GetTestMail(_app);
+			MailItem_ID mailID = new MailItem_ID(testMail);
 			RuleCriteria criteria = GetDefaultCriteria();
 			{ 
 				criteria.Condition = RulePropertyCondition.DoesNotContain;
@@ -115,7 +118,7 @@ namespace OlDockPublishTest.RulesMock
 		{
 			//Arrange
 			string uuid = System.Guid.NewGuid().ToString();
-			MailItem testMail = _testMail;
+			MailItem testMail = Factory.GetTestMail(_app);;
 			testMail.Body = uuid;
 			testMail.Save();
 			MailItem_ID mailID = new MailItem_ID(testMail);
@@ -150,11 +153,20 @@ namespace OlDockPublishTest.RulesMock
 		public void DoAction_ProcessPDF_Triggers()
 		{
 			//Arrange
+			RuleCriteria ruleCriteria = GetDefaultCriteria();
+			{
+				ruleCriteria.ResultingAction = new OlDocPublish.RulesMock.RuleAction[]{ OlDocPublish.RulesMock.RuleAction.ProcessPDF};
+			}
+			MailItem mail = Factory.GetTestMail(_app);
+			MailItem_ID mailID = new MailItem_ID(mail);
+			string beforeProcess = _processor.SO;
 
 			//Act
+			ruleCriteria.DoAction(mailID);
+			string afterProcess = _processor.SO;
 
 			//Assert
-			Assert.Inconclusive();
+			Assert.AreNotEqual(beforeProcess,afterProcess);
 		}
 	}
 }

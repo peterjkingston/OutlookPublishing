@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Outlook;
+using OlDockPublishTest.Fakes;
+using OlDocPublish.Processors;
 using OlDocPublish.RulesMock;
 
 namespace OlDockPublishTest
@@ -24,16 +26,34 @@ namespace OlDockPublishTest
 			return mail;
 		}
 
+		internal static IDocumentProcessor GetProcessor()
+		{
+			if(_processor == null)
+			{
+				_processor = new Fake_DocumentProcessor();
+			}
+
+			return _processor;
+		}
+
 		public static Application GetOutlookApplication()
 		{
-			Type applicationType = Type.GetTypeFromProgID($"Outlook.Application");
-			return (Application)Activator.CreateInstance(applicationType);
+			if(_app == null)
+			{
+				Type applicationType = Type.GetTypeFromProgID($"Outlook.Application");
+				_app = (Application)Activator.CreateInstance(applicationType);
+			}
+
+			return _app;
 		}
 
 		public static IRuleReader GetRuleReader()
 		{
 			return new RuleReader();
 		}
+
+		private static Application _app;
+		private static IDocumentProcessor _processor;
 
 		public static string RuleReader_Path = "test_rule_to_read.json";
 		public static string RuleWriter_Path = "test_rule_to_write.json";
