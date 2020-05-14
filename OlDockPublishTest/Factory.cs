@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Outlook;
 using OlDockPublishTest.Fakes;
+using OlDocPublish.DataProviders;
 using OlDocPublish.Processors;
 using OlDocPublish.RulesMock;
 
@@ -50,6 +51,11 @@ namespace OlDockPublishTest
 		public static IRuleReader GetRuleReader()
 		{
 			return new RuleReader();
+		}
+
+		internal static SAPOrderDataProvider GetSAPOrderDataProvider()
+		{
+			throw new NotImplementedException();
 		}
 
 		private static Application _app;

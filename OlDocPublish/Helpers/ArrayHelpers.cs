@@ -26,15 +26,27 @@ namespace Helpers.Array
 
         public static T[] GetRow<T>(this T[,] array2D, int rowIndex)
         {
-            T[] result = new T[array2D.GetLength(0)];
+            T[] result = new T[array2D.GetLength(1)];
             int fieldCount = result.Length;
 
             for(int i = 0; i < fieldCount; i++)
             {
-                result[i] = array2D[i, rowIndex];
+                result[i] = array2D[rowIndex, i];
             }
 
             return result;
+        }
+
+        public static string ConcatAll(this string[] values, string delimiter)
+        {
+            string result = "";
+
+            foreach (string value in values)
+            {
+                result += delimiter + value;
+            }
+
+            return result + delimiter;
         }
 
         //public static T[,] SelectRows<T>(this T[,] recordSet, Func<T[], bool> match)

@@ -12,8 +12,8 @@ namespace OlDocPublish.DataProviders
 
         public SAPOrderDataProvider(IDataReader dataReader)
         {
-            _recordset = dataReader.GetRecordset();
-            _raw = dataReader.GetRaw();
+            _recordset = dataReader.GetRecordset(Paths.OrderData);
+            _raw = dataReader.GetRaw(Paths.OrderData);
             _fields = _recordset.ContainsKey("Fields")?new List<string>(_recordset["Fields"]):new List<string>(new string[0]);
         }
 
@@ -23,12 +23,12 @@ namespace OlDocPublish.DataProviders
         {
             bool result = false;
 
-            if(_recordset.ContainsKey(so))
+            if (_recordset.ContainsKey(so))
             {
-                if(_fields.Contains(field))
+                if (_fields.Contains(field))
                 {
                     int fieldIndex = _fields.FindIndex((x) => x == field);
-                    result = _fields[fieldIndex] != "";        
+                    result = _fields[fieldIndex] != "";
                 }
             }
 
@@ -48,23 +48,23 @@ namespace OlDocPublish.DataProviders
             return result.Trim();
         }
 
-        public string GetData(string field, string key, string indexField)
+        public string GetData(string selectField, string key, string indexField)
         {
             string result = "";
 
-            if(_fields.Contains(field))
+            if(_fields.Contains(selectField))
             {
-                int fieldIndex = _fields.FindIndex((x) => x == field);
-                int dataIndex = _fields.FindIndex((x) => x == field);
+                int fieldIndex = _fields.FindIndex((x) => x == indexField);
+                int dataIndex = _fields.FindIndex((x) => x == selectField);
 
-                int rowCount = _raw.GetLength(1);
+                int rowCount = _raw.GetLength(0);
                 for(int row = 0; row < rowCount; row++)
                 {
                     result = _raw[row, fieldIndex] == key? _raw[row, dataIndex]: "";
                     if(result != ""){break;}
                 }
             }
-
+           
             return result;
         }
     }
