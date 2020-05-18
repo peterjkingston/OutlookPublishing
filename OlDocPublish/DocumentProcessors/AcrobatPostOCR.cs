@@ -7,6 +7,7 @@ namespace OlDocPublish.Processors
 {
     public class AcrobatPostOCR : IPostOCR
     {
+        //Future plans to move this to an external definition.
         private enum PageID
         {
             csUNKDocument = -1,
@@ -23,7 +24,7 @@ namespace OlDocPublish.Processors
         private IOrderDataProvider _dataProvider;
         private CAcroPDDoc _pdDoc;
 
-        AcrobatPostOCR(IOrderDataProvider dataProvider, CAcroPDDoc pDDoc)
+        public AcrobatPostOCR(IOrderDataProvider dataProvider, CAcroPDDoc pDDoc)
         {
             _dataProvider = dataProvider;
             _pdDoc = pDDoc;

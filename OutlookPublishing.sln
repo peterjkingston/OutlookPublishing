@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlDockPublishTest", "OlDockPublishTest\OlDockPublishTest.csproj", "{C08DCA08-4F8E-4592-8EEF-1740FAC3B601}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlDocPublishTest", "OlDockPublishTest\OlDocPublishTest.csproj", "{C08DCA08-4F8E-4592-8EEF-1740FAC3B601}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

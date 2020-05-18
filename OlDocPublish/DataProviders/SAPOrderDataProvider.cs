@@ -10,10 +10,10 @@ namespace OlDocPublish.DataProviders
         List<string> _fields;
         string[,] _raw;
 
-        public SAPOrderDataProvider(IDataReader dataReader)
+        public SAPOrderDataProvider(IDataReader dataReader, string sourcePath)
         {
-            _recordset = dataReader.GetRecordset(Paths.OrderData);
-            _raw = dataReader.GetRaw(Paths.OrderData);
+            _recordset = dataReader.GetRecordset(sourcePath);
+            _raw = dataReader.GetRaw(sourcePath);
             _fields = _recordset.ContainsKey("Fields")?new List<string>(_recordset["Fields"]):new List<string>(new string[0]);
         }
 

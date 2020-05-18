@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OlDocPublish.Processors;
 using OlDocPublish.RulesMock;
 
-namespace OlDockPublishTest.RulesMock
+namespace OlDocPublishTest.RulesMock
 {
 	[TestClass]
 	public class Test_RuleCriteria

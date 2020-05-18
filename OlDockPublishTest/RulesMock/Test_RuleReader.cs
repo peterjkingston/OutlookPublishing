@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OlDockPublishTest;
+using OlDocPublishTest;
 using OlDocPublish.RulesMock;
 
-namespace OlDockPublish.RulesMock
+namespace OlDocPublishTest.RulesMock
 {
 	[TestClass]
 	public class Test_RuleReader

@@ -7,7 +7,7 @@ using Microsoft.Office.Interop.Outlook;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OlDocPublish.DataProviders;
 
-namespace OlDockPublishTest.DataProviders
+namespace OlDocPublishTest.DataProviders
 {
 	[TestClass]
 	public class Test_SAPTextDataReader

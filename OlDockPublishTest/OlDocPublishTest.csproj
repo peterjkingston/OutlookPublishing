@@ -64,9 +64,14 @@
   <ItemGroup>
     <Compile Include="DataProviders\Test_SAPOrderDataProvider.cs" />
     <Compile Include="DataProviders\Test_SAPTextDataReader.cs" />
+    <Compile Include="DocumentProcessors\Test_AcrobatAutoProcessor.cs" />
+    <Compile Include="DocumentProcessors\Test_AcrobatPostOCR.cs" />
+    <Compile Include="DocumentProcessors\Test_Levenshtein.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Fakes\Fake_DataReader.cs" />
     <Compile Include="Fakes\Fake_DocumentProcessor.cs" />
+    <Compile Include="Fakes\Fake_PostOCR.cs" />
+    <Compile Include="ManagedCOM\Test_Acrobat_COM.cs" />
     <Compile Include="RulesMock\Test_RuleReader.cs" />
     <Compile Include="RulesMock\Test_RuleWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +82,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="Acrobat">
+      <Guid>{E64169B3-3592-47D2-816E-602C5C13F328}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>

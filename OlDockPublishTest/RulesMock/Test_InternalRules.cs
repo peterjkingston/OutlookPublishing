@@ -3,7 +3,7 @@ using Microsoft.Office.Interop.Outlook;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OlDocPublish.RulesMock;
 
-namespace OlDockPublishTest.RulesMock
+namespace OlDocPublishTest.RulesMock
 {
 	[TestClass]
 	public class Test_InternalRules
@@ -16,7 +16,7 @@ namespace OlDockPublishTest.RulesMock
 		#endregion CLASS ARRANGE
 
 		[TestMethod]
-		public void Process_DoesNotError()
+		public void Process_DoesNotError_GivenPlainEmail()
 		{
 			//Arrange
 			IRuleReader ruleReader = Factory.GetRuleReader();
@@ -30,6 +30,10 @@ namespace OlDockPublishTest.RulesMock
 			//Act
 			try
 			{
+				internalRules.Process(mail);
+				internalRules.Process(mail);
+				internalRules.Process(mail);
+				internalRules.Process(mail);
 				internalRules.Process(mail);
 			}
 			catch

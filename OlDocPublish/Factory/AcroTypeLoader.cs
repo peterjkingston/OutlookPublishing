@@ -20,6 +20,11 @@ namespace OlDocPublish.Factory
             return (CAcroRect)GetAcrobatObject("Rect");
         }
 
+        public static CAcroPDDoc GetPDDoc()
+        {
+            return (CAcroPDDoc)GetAcrobatObject("PDDoc");
+        }
+
         private static object GetAcrobatObject(string objectName)
         {
             Type AcrobatType = Type.GetTypeFromProgID($"AcroExch.{objectName}");

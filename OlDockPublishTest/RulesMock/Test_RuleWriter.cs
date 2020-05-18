@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.Office.Interop.Outlook;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OlDockPublishTest;
+using OlDocPublishTest;
 using OlDocPublish.RulesMock;
 using RuleAction = OlDocPublish.RulesMock.RuleAction;
 
-namespace OlDockPublish.RulesMock
+namespace OlDocPublishTest.RulesMock
 {
 	[TestClass]
 	public class Test_RuleWriter

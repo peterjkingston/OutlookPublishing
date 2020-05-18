@@ -3,16 +3,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Acrobat;
 using Microsoft.Office.Interop.Outlook;
-using OlDockPublishTest.Fakes;
+using OlDocPublishTest.Fakes;
 using OlDocPublish.DataProviders;
+using OlDocPublish.Factory;
 using OlDocPublish.Processors;
 using OlDocPublish.RulesMock;
+using System.Diagnostics;
+using OlDockPublishTest.Fakes;
 
-namespace OlDockPublishTest
+namespace OlDocPublishTest
 {
 	static class Factory
 	{
+		public static MailItem GetTestMail_withPDFAttachment(Application app, string pdfSourcePath)
+		{
+			MailItem mail = GetTestMail(app);
+			mail.Attachments.Add(pdfSourcePath);
+
+			return mail;
+		}
+
+		internal static CAcroPDDoc GetAcroPDDoc(string pdfSource)
+		{
+			CAcroAVDoc aVDoc = GetAcroAVDoc();
+			if(aVDoc.Open(pdfSource, "autoTemp"))
+			{
+				return aVDoc.GetPDDoc();
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+
+		/// <summary>
+		/// Retrieves an unmanaged instance of Acrobat
+		/// </summary>
+		/// <returns></returns>
+		internal static CAcroApp GetAcroApp()
+		{
+			return OlDocPublish.Factory.TypeLoader.GetApp();
+		}
+
+		internal static CAcroAVDoc GetAcroAVDoc()
+		{
+			CAcroApp app = GetAcroApp();
+			CAcroAVDoc avDoc = app.GetAVDoc(0);
+			return avDoc;
+		}
+
+		internal static IPostOCR GetPostOCR()
+		{
+			return new Fake_PostOCR();
+		}
+
 		public static MailItem GetTestMail(Application app)
 		{
 			MailItem mail = app.CreateItem(OlItemType.olMailItem);
@@ -39,10 +86,14 @@ namespace OlDockPublishTest
 
 		public static Application GetOutlookApplication()
 		{
-			if(_app == null)
+			if (_app == null)
 			{
-				Type applicationType = Type.GetTypeFromProgID($"Outlook.Application");
-				_app = (Application)Activator.CreateInstance(applicationType);
+				Process[] processes = Process.GetProcessesByName("OUTLOOK");
+				if (processes.Length != 0)
+				{ 
+					Type applicationType = Type.GetTypeFromProgID($"Outlook.Application");
+					_app = (Application)Activator.CreateInstance(applicationType);
+				}
 			}
 
 			return _app;
@@ -55,7 +106,7 @@ namespace OlDockPublishTest
 
 		internal static SAPOrderDataProvider GetSAPOrderDataProvider()
 		{
-			throw new NotImplementedException();
+			return new SAPOrderDataProvider(new Fakes.Fake_DataReader(), "");
 		}
 
 		private static Application _app;

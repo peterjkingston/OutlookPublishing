@@ -7,7 +7,7 @@ using Microsoft.Office.Interop.Outlook;
 using OlDocPublish.Processors;
 using OlDocPublish.Snipping;
 
-namespace OlDockPublishTest.Fakes
+namespace OlDocPublishTest.Fakes
 {
 	class Fake_DocumentProcessor : IDocumentProcessor
 	{

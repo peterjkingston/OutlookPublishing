@@ -1,19 +1,21 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OlDocPublish.DataProviders;
 
-namespace OlDockPublishTest.DataProviders
+namespace OlDocPublishTest.DataProviders
 {
 	[TestClass]
 	public class Test_SAPOrderDataProvider
 	{
 		IDataReader _reader = new Fakes.Fake_DataReader();
+		string sourcePath_fake_valid = Path.GetFullPath("sampleSAPOrderData.txt");
 
 		[TestMethod]
 		public void Exists_ReturnsFalse_WhenFieldNotPresent()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string so = "123456";
 			string fieldName = "Not a field";
 			bool expected = false;
@@ -29,7 +31,7 @@ namespace OlDockPublishTest.DataProviders
 		public void Exists_ReturnsFalse_WhenSONotPresent()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string so = "Not an SO";
 			string fieldName = "SomeFieldName";
 			bool expected = false;
@@ -45,7 +47,7 @@ namespace OlDockPublishTest.DataProviders
 		public void Exists_ReturnsTrue_WhenFieldIsPresent()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string so = "123456";
 			string fieldName = "SomeFieldName";
 			bool expected = true;
@@ -61,7 +63,7 @@ namespace OlDockPublishTest.DataProviders
 		public void Exists_ReturnsTrue_WhenSOIsPresent()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string so = "123456";
 			string fieldName = "SomeFieldName";
 			bool expected = true;
@@ -78,7 +80,7 @@ namespace OlDockPublishTest.DataProviders
 		public void GetData_ReturnsInfo_GivenValidLookup()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string so = "123456";
 			string fieldName = "SomeFieldName";
 			string expected = "Some BS data";
@@ -94,7 +96,7 @@ namespace OlDockPublishTest.DataProviders
 		public void GetData_ReturnsEmptyString_GivenInvalidLookup()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string so = "123456";
 			string fieldName = "INVALID FIELD NAME";
 			string expected = "";
@@ -110,7 +112,7 @@ namespace OlDockPublishTest.DataProviders
 		public void GetData_ReturnsInfo_GivenValidAlternateLookup()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string key = "Some other BS data";
 			string selectedField = "SalesDocument";
 			string indexField = "SomeFieldName";
@@ -127,7 +129,7 @@ namespace OlDockPublishTest.DataProviders
 		public void GetData_ReturnsEmptyString_GivenInvalidAlternateLookup()
 		{
 			//Arrange
-			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader);
+			SAPOrderDataProvider provider = new SAPOrderDataProvider(_reader, sourcePath_fake_valid);
 			string key = "Some INVALID data";
 			string fieldName = "SalesDocument";
 			string lookupField = "SomeFieldName";

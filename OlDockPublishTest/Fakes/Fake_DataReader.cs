@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using OlDocPublish.DataProviders;
 
-namespace OlDockPublishTest.Fakes
+namespace OlDocPublishTest.Fakes
 {
 	internal class Fake_DataReader : IDataReader
 	{

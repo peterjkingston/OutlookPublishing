@@ -45,7 +45,7 @@ namespace OlDocPublish.Processors
         public MailItem Mail {get; private set;} = null;
         public string SO {get; private set;} = "";
         
-        AcrobatAutoProcessor(CAcroApp app, IPostOCR postOCR)
+        public AcrobatAutoProcessor(CAcroApp app, IPostOCR postOCR)
         {
             _app = app;
             _postOCR = postOCR;
@@ -83,8 +83,7 @@ namespace OlDocPublish.Processors
         private CAcroPDDoc GetPDDocFromFile(string directory)
         {
             _avDoc = (CAcroAVDoc)_app.GetAVDoc(0);
-            if(_avDoc.Open(directory,"autoTemp") != 0)
-            {
+            if(_avDoc.Open(directory,"autoTemp"))            {
                 CAcroPDDoc result = (CAcroPDDoc)_avDoc.GetPDDoc();
                 return result;
             }
@@ -97,7 +96,7 @@ namespace OlDocPublish.Processors
         ///<summary>
         ///Returns a Dictionary object describing the start of each new subdocument.
         ///</summary>
-        public void GetDocPageTypes(out List<string> docPageTypes, out List<int> docPages)
+        private void GetDocPageTypes(out List<string> docPageTypes, out List<int> docPages)
         {
             docPages = new List<int>();
             docPageTypes = new List<string>();
@@ -145,6 +144,7 @@ namespace OlDocPublish.Processors
         public bool ProcessMailItem(MailItem mail)
         {
             Mail = mail;
+            
             List<string> docPageTypes;
             List<int> docPages;
             GetDocPageTypes(out docPageTypes, out docPages);
